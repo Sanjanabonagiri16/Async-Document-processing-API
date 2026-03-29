@@ -238,27 +238,14 @@ Tables are created on API startup and when the Celery worker is ready.
 
 ---
 
-## Design decisions (short)
+## Design decisions
 
 - **FastAPI + Celery + Redis** separates HTTP from long-running work and scales workers horizontally.
 - **PostgreSQL + JSONB** keeps durable history and supports listing/filtering.
 - **Two create routes** (`/v1/jobs` vs `/v1/jobs/upload`) give **clear OpenAPI** schemas in Swagger (JSON editor vs file picker).
 - **Webhooks** are best-effort so **GET** remains the source of truth for status.
 - **Rate limiting** reduces abuse on enqueue; job resources are not cached (status changes over time).
-- **`API_PUBLIC_BASE_URL`** documents the reviewer-facing host in OpenAPI **Servers** without changing how Uvicorn binds (`0.0.0.0:8000` in Docker).
-
----
-
-## Submission instructions
-
-Per the assignment brief:
-
-1. **Share your solution via a GitHub repository link** — push this project to GitHub and send the repo URL.
-2. **Setup instructions and assumptions** — included in this README (**Quick start**, **Local development**, **Configuration**, **Assumptions**).
-3. **Design decisions** — see **Design decisions (short)** above.
-4. **Email** [**div@bpoptima.com**](mailto:div@bpoptima.com) with **CC** [**dj@bpoptima.com**](mailto:dj@bpoptima.com), including:
-   - the **GitHub repository link**,
-   - optional notes (e.g. deployed `BASE_URL` if reviewers should hit a live host, and that **`API_PUBLIC_BASE_URL`** is set for Swagger).
+- **`API_PUBLIC_BASE_URL`** documents the public API host in OpenAPI **Servers** without changing how Uvicorn binds (`0.0.0.0:8000` in Docker).
 
 ---
 
